@@ -204,7 +204,7 @@ def submit_preferred_career():
         db.rollback()
 
     # Pass success message to the homepage template after redirection
-    return render_template("index.html", recommendations=[], submitted=False, questions=personality_questions,success=True, success_message=success_message)
+    return render_template("index.html", recommendations=[], questions=personality_questions,success=True, success_message=success_message)
 
 
 

@@ -548,24 +548,10 @@
             
         {% else %}
             <form method="POST">
-                <!-- Step Indicator -->
-                <div class="step-indicator">
-                    <div class="step">
-                        <div class="step-circle active">1</div>
-                        <div class="step-text active">Personality</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-circle">2</div>
-                        <div class="step-text">Skills</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-circle">3</div>
-                        <div class="step-text">Class</div>
-                    </div>
-                </div>
+            
                 <!-- Class Selection Dropdown -->
                 <div class="question-block">
-                    <label for="student_class" class="question-title">Step 1: Select Your Class</label>
+                    <label for="student_class" class="question-title" required>Step 1: Select Your Class</label>
                     <select id="student_class" name="student_class" class="dropdown" required>
                         <option value="9">9th Class</option>
                         <option value="10">10th Class</option>
@@ -577,7 +563,7 @@
 
                 <!-- Skills Selection Dropdown -->
                 <div class="question-block">
-                    <label for="skills" class="question-title">Step 2: Select Your CORE Skill</label>
+                    <label for="skills" class="question-title" required >Step 2: Select Your CORE Skill</label>
                     <select id="skills" name="skills" class="dropdown" required>
                         <option value="Problem Solving">Problem Solving</option>
                         <option value="Critical Thinking">Critical Thinking</option>
@@ -598,15 +584,16 @@
                             <p>{{ q.question }}</p>
                             <div class="button-group">
                                 {% for key, option in q.options.items() %}
-                                    <button type="button" class="button-option" data-answer="{{ key }}" onclick="selectOption(this)">
-                                        {{ option }}
-                                    </button>
-                                    <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;" required>
+                                    <label class="button-option" onclick="selectOption(this)" required>
+                                        <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;" required>
+                                        <span>{{ option }}</span>
+                                    </label>
                                 {% endfor %}
                             </div>
                         </div>
                     {% endfor %}
                 </div>
+                
 
                 <!-- Submit Button -->
                 <button type="submit" class="submit-btn">Submit and Get Career Advice</button>
