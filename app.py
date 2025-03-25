@@ -3,7 +3,8 @@ from flask import Flask, render_template, request, redirect
 import google.generativeai as genai
 from dotenv import load_dotenv
 import re
-import MySQLdb
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Loading the database  
 db = MySQLdb.connect(host="localhost", user="root", passwd="theanimesh2005", db="dbms")
