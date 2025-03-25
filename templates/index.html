@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Advisor Chatbot</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --primary-dark: #3a0ca3;
+            --secondary: #f72585;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f2f5;
+            color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%234361ee' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .question-block {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .question-title::before {
+            content: '🚀';
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .button-option {
+            padding: 14px 20px;
+            background: white;
+            color: var(--dark);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: calc(50% - 6px);
+            text-align: center;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .button-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .button-option:hover {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.15);
+        }
+        
+        .button-option:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .button-option.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
+        }
+        
+        .button-option.selected::before {
+            transform: scaleX(1);
+        }
+        
+        .dropdown {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            background-color: white;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            color: var(--dark);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234361ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+        
+        .dropdown:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+            outline: none;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.3);
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .recommendations {
+            margin-top: 30px;
+        }
+        
+        .recommendation-item {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .recommendation-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .recommendation-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .recommendation-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .recommendation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .recommendation-item p {
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .recommendation-item strong {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation-item::before {
+            content: '🎓';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--success) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+            z-index: 1000;
+            font-size: 16px;
+            font-weight: 500;
+            animation: slideInRight 0.5s ease forwards, fadeOut 0.5s ease 2.5s forwards;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        .question-options {
+            margin-bottom: 25px;
+        }
+        
+        .question-options p {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        a {
+            display: block;
+            text-align: center;
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+        }
+        
+        a:hover::after {
+            width: 100px;
+        }
+        
+        h2 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        /* Step indicators */
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #e9ecef;
+            z-index: 0;
+        }
+        
+        .step {
+            width: 33%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            border: 3px solid #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-circle.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 5px rgba(67, 97, 238, 0.2);
+        }
+        
+        .step-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .step-text.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question-block {
+                padding: 20px;
+            }
+            
+            .button-option {
+                width: 100%;
+                font-size: 15px;
+                padding: 12px 15px;
+            }
+            
+            .submit-btn {
+                font-size: 16px;
+                padding: 14px;
+            }
+            
+            .step-indicator {
+                display: none;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            
+            .question-title {
+                font-size: 1.1rem;
+            }
+            
+            .question-options p {
+                font-size: 0.95rem;
+            }
+            
+            .recommendation-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Career Advisor Chatbot
+            {% if success %}
+                <div id="success-alert" class="alert">
+                    {{ success_message }}
+                </div>
+            {% endif %}
+        </h1>
+
+        {% if submitted %}
+            <h2>Recommended Careers</h2>
+            <div class="recommendations">
+                {% for rec in recommendations %}
+                    <div class="recommendation-item">
+                        <p><strong>{{ rec.name }}</strong></p>
+                        <p>{{ rec.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <form method="POST" action="/submit_preferred_career">
+                <label for="preferred_career">Enter your preferred career:</label>
+                <input type="text" id="preferred_career" name="preferred_career" class="dropdown" placeholder="Type your preferred career..." required>
+                <button type="submit" class="submit-btn">Save Preferred Career</button>
+            </form>
+            <a href="/">Take the test again</a>
+            
+        {% else %}
+            <form method="POST">
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step">
+                        <div class="step-circle active">1</div>
+                        <div class="step-text active">Personality</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">2</div>
+                        <div class="step-text">Skills</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">3</div>
+                        <div class="step-text">Class</div>
+                    </div>
+                </div>
+
+                <!-- Personality Questions -->
+                <div class="question-block">
+                    <h2 class="question-title">Step 1: Personality Test</h2>
+                    {% for q in questions %}
+                        <div class="question-options">
+                            <p>{{ q.question }}</p>
+                            <div class="button-group">
+                                {% for key, option in q.options.items() %}
+                                    <button type="button" class="button-option" data-answer="{{ key }}" onclick="selectOption(this)">
+                                        {{ option }}
+                                    </button>
+                                    <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;" required>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Skills Selection Dropdown -->
+                <div class="question-block">
+                    <label for="skills">Step 2: Select Your CORE Skill</label>
+                    <select id="skills" name="skills" class="dropdown" required>
+                        <option value="Problem Solving">Problem Solving</option>
+                        <option value="Critical Thinking">Critical Thinking</option>
+                        <option value="Creativity">Creativity</option>
+                        <option value="Leadership">Leadership</option>
+                        <option value="Communication">Communication</option>
+                        <option value="Data Analysis">Data Analysis</option>
+                        <option value="Coding">Coding</option>
+                        <option value="Artistic Skills">Artistic Skills</option>
+                    </select>
+                </div>
+
+                <!-- Class Selection Dropdown -->
+                <div class="question-block">
+                    <label for="student_class">Step 3: Select Your Class</label>
+                    <select id="student_class" name="student_class" class="dropdown" required>
+                        <option value="9">9th Class</option>
+                        <option value="10">10th Class</option>
+                        <option value="11">11th Class</option>
+                        <option value="12">12th Class</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit and Get Career Advice</button>
+
+            </form>
+        {% endif %}
+    </div>
+
+    <script>
+        function selectOption(button) {
+            // Remove the 'selected' class from all buttons
+            const buttons = button.parentElement.querySelectorAll('.button-option');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Add 'selected' class to the clicked button
+            button.classList.add('selected');
+            
+            // Mark the hidden radio input as checked
+            const input = button.parentElement.querySelector('input[type="radio"][value="' + button.dataset.answer + '"]');
+            input.checked = true;
+            
+            // Update step indicators (animation effect)
+            const allSteps = document.querySelectorAll('.step-circle');
+            const allStepTexts = document.querySelectorAll('.step-text');
+            
+            // Find which question block this is in
+            const questionBlock = button.closest('.question-block');
+            const allQuestionBlocks = document.querySelectorAll('.question-block');
+            const index = Array.from(allQuestionBlocks).indexOf(questionBlock);
+            
+            if (index === 0 && allSteps.length > 1) {
+                allSteps[1].classList.add('active');
+                allStepTexts[1].classList.add('active');
+            }
+        }
+        
+        // For dropdown selection, update step indicator
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('change', function() {
+                const allSteps = document.querySelectorAll('.step-circle');
+                const allStepTexts = document.querySelectorAll('.step-text');
+                
+                if (this.id === 'skills' && allSteps.length > 2) {
+                    allSteps[2].classList.add('active');
+                    allStepTexts[2].classList.add('active');
+                }
+            });
+        });
+        
+        // Auto-hide alert
+        setTimeout(function() {
+            var alertBox = document.getElementById('success-alert');
+            if (alertBox) {
+                alertBox.style.display = 'none';
+            }
+        }, 3000);
+        document.getElementById("career-form").addEventListener("submit", function (event) {
+        let formValid = true;
+        const questions = document.querySelectorAll('.question-options');
+
+        // Loop through each question block and check for selected radio
+        questions.forEach((question, index) => {
+            const selectedOption = question.querySelector('input[type="radio"]:checked');
+            if (!selectedOption) {
+                formValid = false;
+                question.insertAdjacentHTML('beforeend', `<p class="error-message" style="color: red;">Please answer Question ${index + 1}.</p>`);
+            }
+        });
+
+        // If any field is invalid, prevent form submission
+        if (!formValid) {
+            event.preventDefault();
+        }
+    });
+    </script>
+
+</body>
+</html>
