@@ -563,24 +563,17 @@
                         <div class="step-text">Class</div>
                     </div>
                 </div>
-
-                <!-- Personality Questions -->
+                <!-- Class Selection Dropdown -->
                 <div class="question-block">
-                    <h2 class="question-title">Step 1: Personality Test</h2>
-                    {% for q in questions %}
-                        <div class="question-options">
-                            <p>{{ q.question }}</p>
-                            <div class="button-group">
-                                {% for key, option in q.options.items() %}
-                                    <button type="button" class="button-option" data-answer="{{ key }}" onclick="selectOption(this)">
-                                        {{ option }}
-                                    </button>
-                                    <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;" required>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <label for="student_class">Step 1: Select Your Class</label>
+                    <select id="student_class" name="student_class" class="dropdown" required>
+                        <option value="9">9th Class</option>
+                        <option value="10">10th Class</option>
+                        <option value="11">11th Class</option>
+                        <option value="12">12th Class</option>
+                    </select>
                 </div>
+
 
                 <!-- Skills Selection Dropdown -->
                 <div class="question-block">
@@ -596,16 +589,23 @@
                         <option value="Artistic Skills">Artistic Skills</option>
                     </select>
                 </div>
-
-                <!-- Class Selection Dropdown -->
-                <div class="question-block">
-                    <label for="student_class">Step 3: Select Your Class</label>
-                    <select id="student_class" name="student_class" class="dropdown" required>
-                        <option value="9">9th Class</option>
-                        <option value="10">10th Class</option>
-                        <option value="11">11th Class</option>
-                        <option value="12">12th Class</option>
-                    </select>
+                
+                 <!-- Personality Questions -->
+                 <div class="question-block">
+                    <h2 class="question-title">Step 3: Personality Test</h2>
+                    {% for q in questions %}
+                        <div class="question-options">
+                            <p>{{ q.question }}</p>
+                            <div class="button-group">
+                                {% for key, option in q.options.items() %}
+                                    <button type="button" class="button-option" data-answer="{{ key }}" onclick="selectOption(this)">
+                                        {{ option }}
+                                    </button>
+                                    <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;" required>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
 
                 <!-- Submit Button -->
