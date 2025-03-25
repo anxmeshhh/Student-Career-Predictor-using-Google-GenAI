@@ -565,7 +565,7 @@
                 </div>
                 <!-- Class Selection Dropdown -->
                 <div class="question-block">
-                    <label for="student_class">Step 1: Select Your Class</label>
+                    <label for="student_class" class="question-title">Step 1: Select Your Class</label>
                     <select id="student_class" name="student_class" class="dropdown" required>
                         <option value="9">9th Class</option>
                         <option value="10">10th Class</option>
@@ -577,7 +577,7 @@
 
                 <!-- Skills Selection Dropdown -->
                 <div class="question-block">
-                    <label for="skills">Step 2: Select Your CORE Skill</label>
+                    <label for="skills" class="question-title">Step 2: Select Your CORE Skill</label>
                     <select id="skills" name="skills" class="dropdown" required>
                         <option value="Problem Solving">Problem Solving</option>
                         <option value="Critical Thinking">Critical Thinking</option>
@@ -589,10 +589,10 @@
                         <option value="Artistic Skills">Artistic Skills</option>
                     </select>
                 </div>
-                
+
                  <!-- Personality Questions -->
                  <div class="question-block">
-                    <h2 class="question-title">Step 3: Personality Test</h2>
+                    <h2 class="question-title">Step 3: Personality Test (Ensure all Question's Options are selected)</h2>
                     {% for q in questions %}
                         <div class="question-options">
                             <p>{{ q.question }}</p>
