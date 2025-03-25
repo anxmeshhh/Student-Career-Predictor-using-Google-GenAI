@@ -8,7 +8,13 @@ pymysql.install_as_MySQLdb()
 import MySQLdb  
 
 # Loading the database  
-db = MySQLdb.connect(host="localhost", user="root", passwd="theanimesh2005", db="dbms")
+db = MySQLdb.connect(
+    host="ballast.proxy.rlwy.net",
+    user="root",
+    passwd="RSbqijjWNCDlebpDQPLmOJfIwOjzcUEi",
+    port=59880,
+    db="railway"
+)
 cursor = db.cursor()
 
 # Load environment variables
