@@ -541,7 +541,7 @@
             </div>
             <form method="POST" action="/submit_preferred_career">
                 <label for="preferred_career">Enter your preferred career:</label>
-                <input type="text" id="preferred_career" name="preferred_career" class="dropdown" placeholder="Type your preferred career...">
+                <input type="text" id="preferred_career" name="preferred_career" class="dropdown" placeholder="Type your preferred career..." required>
                 <button type="submit" class="submit-btn">Save Preferred Career</button>
             </form>
             <a href="/">Take the test again</a>
@@ -564,7 +564,7 @@
                 <!-- Skills Selection Dropdown -->
                 <div class="question-block">
                     <label for="skills" class="question-title" required >Step 2: Select Your CORE Skill</label>
-                    <select id="skills" name="skills" class="dropdown" required>
+                    <select id="skills" name="skills" class="dropdown" >
                         <option value="Problem Solving">Problem Solving</option>
                         <option value="Critical Thinking">Critical Thinking</option>
                         <option value="Creativity">Creativity</option>
@@ -585,7 +585,7 @@
                             <div class="button-group">
                                 {% for key, option in q.options.items() %}
                                     <label class="button-option" onclick="selectOption(this)">
-                                        <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;" required>
+                                        <input type="radio" name="q{{ loop.index0 }}" value="{{ key }}" style="display:none;">
                                         <span>{{ option }}</span>
                                     </label>
                                 {% endfor %}
