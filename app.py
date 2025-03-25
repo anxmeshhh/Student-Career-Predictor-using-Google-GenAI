@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import re
 import pymysql
 pymysql.install_as_MySQLdb()
+import MySQLdb  
 
 # Loading the database  
 db = MySQLdb.connect(host="localhost", user="root", passwd="theanimesh2005", db="dbms")
